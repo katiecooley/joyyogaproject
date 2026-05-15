@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joy Yoga Project &middot; Somatic yoga in Spokane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #555555;
+    --paper: #ffffff;
+    --paper-alt: #f3f3f2;
+    --accent: #8a3a2a;
+    --accent-soft: #b85a3e;
+    --line: #e5e5e3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    z-index: 100;
+    padding: 1.1rem 0;
+  }
+  nav .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+  .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 2rem; }
+
+  /* Hero */
+  .hero {
+    padding: 7rem 2rem 5rem;
+  }
+  .hero .inner { max-width: 680px; margin: 0 auto; padding: 0 2rem; }
+  .hero .eyebrow {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1.75rem;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.5rem;
+    max-width: 22ch;
+  }
+  .hero h1 em { font-style: italic; font-weight: 400; }
+  .hero .lead {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    line-height: 1.7;
+  }
+
+  /* Section base */
+  section { padding: 5rem 2rem; }
+  .section-label {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    max-width: 24ch;
+  }
+
+  /* About */
+  .about { background: var(--paper-alt); }
+  .about p {
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.3rem;
+    max-width: 62ch;
+    line-height: 1.75;
+  }
+  .about p:first-of-type {
+    font-size: 1.05rem;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  .about .sig {
+    margin-top: 2rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .about .sig a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px; }
+  .about .sig a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* Offerings */
+  .offerings .items {
+    border-top: 1px solid var(--line);
+    margin-top: 1rem;
+  }
+  .offering {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .offering .label {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .offering h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin-bottom: 0.85rem;
+    line-height: 1.3;
+  }
+  .offering p {
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    max-width: 58ch;
+  }
+  .offering .detail {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+  }
+
+  /* Who */
+  .who { background: var(--paper-alt); }
+  .who p {
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.1rem;
+    max-width: 60ch;
+    line-height: 1.75;
+  }
+
+  /* Schedule */
+  .schedule { background: var(--paper-alt); }
+  .schedule p.lead-line {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    max-width: 58ch;
+    line-height: 1.7;
+  }
+  .schedule-frame {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .schedule-frame iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    min-height: 700px;
+  }
+
+  /* Contact */
+  .contact { text-align: center; padding: 7rem 2rem; }
+  .contact h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    max-width: 26ch;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: -0.01em;
+  }
+  .contact h2 em { font-style: italic; }
+  .contact p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 50ch;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .button {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 2.25rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .button:hover { background: var(--accent); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 2.5rem 2rem 2rem;
+    background: var(--paper);
+  }
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  footer .name { font-family: 'Fraunces', serif; font-size: 0.95rem; color: var(--ink); }
+  footer a { color: var(--ink-soft); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    nav ul { gap: 1.25rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .offering { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">Joy Yoga Project</div>
+    <ul>
+      <li><a href="#offerings">Offerings</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="inner">
+    <div class="eyebrow">Spokane, WA</div>
+    <h1>Yoga, taught as a practice of <em>somatic literacy</em>.</h1>
+    <p class="lead">Limited monthly offerings with Dr. Katherine Scanlon Cooley, rooted in Katonah Yoga&reg; methodology and informed by research in integrative health science.</p>
+  </div>
+</header>
+
+<section class="about">
+  <div class="container-narrow">
+    <div class="section-label">About the practice</div>
+    <p>I teach yoga as somatic education &mdash; a practice rooted in the idea that the body has a specific architecture, logic, and intelligence that can be read and worked with.</p>
+    <p>The work is grounded in Katonah Yoga&reg; methodology and informed by my research in integrative health science. Classes are small and reflective. The approach is precise without being rigid, and accessible without being shallow. People typically come to me from chronic pain or long histories with yoga that have left them feeling like a tourist in their own body, or from athletic backgrounds where they have spent years training the body without ever fully inhabiting it.</p>
+    <p>This isn&rsquo;t yoga as fitness, although it will build lung capacity, strength, and mobility. And it isn&rsquo;t yoga as stress relief, although you will be able to hold more complexity and paradox. It&rsquo;s closer to learning a language &mdash; one your body has been speaking all along.</p>
+    <p style="margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--line); font-size: 0.92rem; font-style: italic;">On the name. Nevine Michaan, who developed Katonah Yoga, teaches that when we face the direction of joy, the rearview mirror reveals everything that brought us here. The practice is in that spirit &mdash; oriented forward, with what came before integrated and visible behind.</p>
+    <div class="sig">
+      Dr. Katherine Scanlon Cooley &mdash; <a href="https://scanloncooley.com">scanloncooley.com</a>
+    </div>
+  </div>
+</section>
+
+<section id="offerings" class="offerings">
+  <div class="container-narrow">
+    <div class="section-label">How to work with me</div>
+    <h2 class="section-title">Practice with me.</h2>
+    <div class="items">
+
+      <div class="offering">
+        <div class="label">01 &mdash; In Spokane</div>
+        <div>
+          <h3>Weekly in-person classes</h3>
+          <p>An ongoing class for people who want to come into the practice regularly. Each session builds on the last, and you can join at any point.</p>
+          <div class="detail"><a href="#schedule" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">See the current schedule &darr;</a></div>
+        </div>
+      </div>
+
+      <div class="offering">
+        <div class="label">02 &mdash; Anywhere</div>
+        <div>
+          <h3>Plumb Method</h3>
+          <p>An app I built to extend this practice beyond the studio &mdash; for high-achieving women who want to get back into their bodies and move better. On-demand sessions and a weekly livestream class.</p>
+          <div class="detail">Pilot now recruiting &middot; <a href="https://plumbmethod.com" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">plumbmethod.com &rarr;</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="schedule" class="schedule">
+  <div class="container-narrow">
+    <div class="section-label">Schedule</div>
+    <h2 class="section-title">The live schedule.</h2>
+    <p class="lead-line">Sign up for any class directly through MindBody. New to the practice? Email me before your first class so I know to expect you.</p>
+    <div class="schedule-frame">
+      <iframe src="https://clients.mindbodyonline.com/classic/ws?studioid=5744257&amp;stype=-7&amp;sView=day&amp;sLoc=0" title="Joy Yoga Project class schedule" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container-narrow">
+    <h2>To inquire, or to ask whether this is the <em>right fit</em>, send a note.</h2>
+    <p>I respond to every email personally. Tell me a little about where you are and what you&rsquo;re looking for.</p>
+    <a href="mailto:cooley.katherine@gmail.com" class="button">cooley.katherine@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <div class="name">Joy Yoga Project</div>
+      <div style="margin-top: 0.4rem;">214 E 13th Ave, Spokane, WA 99202</div>
+    </div>
+    <div style="text-align: right;">
+      <div><a href="https://www.instagram.com/joy.yoga.project">Instagram</a> &nbsp;&middot;&nbsp; With <a href="https://scanloncooley.com">Dr. Katherine Scanlon Cooley</a></div>
+      <div style="margin-top: 0.4rem; opacity: 0.6;">&copy; 2026</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
