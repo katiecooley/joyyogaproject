@@ -206,13 +206,10 @@
     border: 1px solid var(--line);
     border-radius: 2px;
     overflow: hidden;
+     min-height: 400px;  
+     padding: 1.5rem; 
   }
-  .schedule-frame iframe {
-    display: block;
-    width: 100%;
-    border: 0;
-    min-height: 700px;
-  }
+
 
   /* Contact */
   .contact { text-align: center; padding: 7rem 2rem; }
@@ -343,7 +340,10 @@
     <h2 class="section-title">The live schedule.</h2>
     <p class="lead-line">Sign up for any class directly through MindBody. New to the practice? Email me before your first class so I know to expect you.</p>
     <div class="schedule-frame">
-      <iframe src="https://clients.mindbodyonline.com/classic/ws?studioid=5744257&amp;stype=-7&amp;sView=day&amp;sLoc=0" title="Joy Yoga Project class schedule" loading="lazy"></iframe>
+         <!-- Mindbody Schedules widget begin -->
+   <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id="05316718378"></div>
+   <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
+   <!-- Mindbody Schedules widget end --><iframe src="https://clients.mindbodyonline.com/classic/ws?studioid=5744257&amp;stype=-7&amp;sView=day&amp;sLoc=0" title="Joy Yoga Project class schedule" loading="lazy"></iframe>
     </div>
   </div>
 </section>
