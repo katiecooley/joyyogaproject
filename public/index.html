@@ -201,15 +201,108 @@
     max-width: 58ch;
     line-height: 1.7;
   }
-  .schedule-frame {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    overflow: hidden;
-     min-height: 400px;  
-     padding: 1.5rem; 
+  .schedule-block {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
   }
-
+  .schedule-block:first-of-type {
+    margin-top: 1rem;
+  }
+  .schedule-group-label {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+  .schedule-heading {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .week-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.5rem;
+  }
+  .week-nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    padding: 0.25rem 0.5rem;
+    transition: color 0.2s;
+  }
+  .week-nav button:hover:not(:disabled) { color: var(--accent); }
+  .week-nav button:disabled { opacity: 0.25; cursor: not-allowed; }
+  .week-label {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .class-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 1.5rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+    transition: opacity 0.2s;
+  }
+  .class-row:last-child { border-bottom: none; }
+  .class-row.class-past { opacity: 0.35; }
+  .class-day {
+    font-family: 'Fraunces', serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .class-time { font-size: 0.88rem; color: var(--ink-soft); }
+  .class-detail {
+    font-family: 'Fraunces', serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 0.2rem;
+  }
+  .class-closure {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .no-classes {
+    padding: 1.5rem 0;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+  .schedule-note {
+    margin-top: 2.5rem;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.7;
+  }
+  .schedule-note a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+    padding-bottom: 1px;
+    font-style: normal;
+  }
+  @media (max-width: 640px) {
+    .class-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  }
 
   /* Contact */
   .contact { text-align: center; padding: 7rem 2rem; }
@@ -288,21 +381,21 @@
 <header class="hero">
   <div class="inner">
     <div class="eyebrow">Spokane, WA</div>
-    <h1>A yoga framework for <em>somatic resourcing</em>.</h1>
-    <p class="lead">Limited weekly sessions with Dr. Katie Cooley.</p>
+    <h1>Yoga, taught as a practice of <em>somatic literacy</em>.</h1>
+    <p class="lead">Limited monthly offerings with Dr. Katherine Scanlon Cooley, rooted in Katonah Yoga&reg; methodology and informed by research in integrative health science.</p>
   </div>
 </header>
 
 <section class="about">
   <div class="container-narrow">
     <div class="section-label">About the practice</div>
-    <p>I use a yoga framework to build somatic resourcing. Sessions develop capacity &mdash; through movement, breath, attention, visualization, therapeutic metaphor, archetype, and sacred geometry &mdash; to build the interior capacities that health depends on: interoception, proprioception, structural integrity, and nervous system regulation.</p>
-    <p>Classes are small and interactive.</p>
-    <p>People come to this practice from chronic pain or long histories with yoga that have left them feeling like a tourist in their own body, or from athletic backgrounds where they have spent years training their body without ever fully inhabiting it.</p>
-    <p>This isn&rsquo;t yoga as fitness, although it will build lung capacity, strength, and mobility. And it isn&rsquo;t yoga as stress relief, although you will be able to hold more complexity and paradox. It&rsquo;s closer to learning a language &mdash; one that will help you have a deeper mind-body conversation.</p>
+    <p>I teach yoga as a somatic resourcing practice. Sessions develop our capacity &mdash; through movement, breath, attention, visualization, therapeutic metaphor, archetype, and sacred geometry &mdash; to build the interior capacities that health depends on: interoception, proprioception, structural integrity, and nervous system regulation.</p>
+    <p>Classes are small and interactive. The approach is precise but not rigid, and accessible without being shallow.</p>
+    <p>People typically come to me from chronic pain or long histories with yoga that have left them feeling like a tourist in their own body, or from athletic backgrounds where they have spent years training the body without ever fully inhabiting it.</p>
+    <p>This isn&rsquo;t yoga as fitness, although it will build lung capacity, strength, and mobility. And it isn&rsquo;t yoga as stress relief, although you will be able to hold more complexity and paradox. Instead, it is a practice of learning to fit yourself so you can live and move in the ways that you want.</p>
     <p style="margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--line); font-size: 0.92rem; font-style: italic;">On the name. Nevine Michaan, who developed <a href="https://www.katonahyoga.com" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">Katonah Yoga&reg;</a>, teaches that when we face the direction of joy, the rearview mirror reveals everything that brought us here. The practice is in that spirit &mdash; oriented forward, with what came before integrated and visible behind.</p>
     <div class="sig">
-      Dr. Katie Scanlon Cooley &mdash; <a href="https://scanloncooley.com">scanloncooley.com</a>
+      Dr. Katherine Scanlon Cooley &mdash; <a href="https://scanloncooley.com">scanloncooley.com</a>
     </div>
   </div>
 </section>
@@ -310,14 +403,14 @@
 <section id="offerings" class="offerings">
   <div class="container-narrow">
     <div class="section-label">How to work with me</div>
-    <h2 class="section-title">Somatic resourcing yoga sessions.</h2>
+    <h2 class="section-title">Practice with me.</h2>
     <div class="items">
 
       <div class="offering">
         <div class="label">01 &mdash; In Spokane</div>
         <div>
           <h3>Weekly in-person classes</h3>
-          <p>An ongoing community classes.</p>
+          <p>An ongoing class for people who want to come into the practice regularly. Each session builds on the last, and you can join at any point.</p>
           <div class="detail"><a href="#schedule" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">See the current schedule &darr;</a></div>
         </div>
       </div>
@@ -325,8 +418,8 @@
       <div class="offering">
         <div class="label">02 &mdash; Anywhere</div>
         <div>
-          <h3>Plumb</h3>
-          <p>A six week online program for getting started. It extends the work beyond the studio &mdash; designed for women who want to develop their capacity for somatic resourcing. This is a cohort based model that begins quarterly.</p>
+          <h3>Plumb Method</h3>
+          <p>An app I built to extend this practice beyond the studio &mdash; for high-achieving women who want to get back into their bodies and move better. On-demand sessions and a weekly livestream class.</p>
           <div class="detail">Pilot now recruiting &middot; <a href="https://plumbmethod.com" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">plumbmethod.com &rarr;</a></div>
         </div>
       </div>
@@ -338,22 +431,193 @@
 <section id="schedule" class="schedule">
   <div class="container-narrow">
     <div class="section-label">Schedule</div>
-    <h2 class="section-title">The live schedule.</h2>
-    <p class="lead-line">Sign up for any class directly through MindBody. New to the practice? Email me before your first class so I know to expect you.</p>
-    <div class="schedule-frame">
-         <!-- Mindbody Schedules widget begin -->
-   <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id="05316718378"></div>
-   <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
-   <!-- Mindbody Schedules widget end --><iframe src="https://clients.mindbodyonline.com/classic/ws?studioid=5744257&amp;stype=-7&amp;sView=day&amp;sLoc=0" title="Joy Yoga Project class schedule" loading="lazy"></iframe>
+    <h2 class="section-title">Current classes.</h2>
+
+    <div class="schedule-block">
+      <h3 class="schedule-heading">Katonah Yoga&reg;</h3>
+
+      <div class="week-nav">
+        <button class="week-prev" aria-label="Previous week">&larr; Previous week</button>
+        <div class="week-label" id="week-label">&nbsp;</div>
+        <button class="week-next" aria-label="Next week">Next week &rarr;</button>
+      </div>
+
+      <div id="class-list">
+        <!-- populated by JavaScript -->
+      </div>
     </div>
+
+    <p class="schedule-note">All classes at 214 E 13th Ave, Spokane. New to the practice, or want to reserve a spot &mdash; <a href="mailto:cooley.katherine@gmail.com">send a note</a>.</p>
+
+    <script>
+      (function () {
+        //
+        // ─── SCHEDULE CONFIG ─────────────────────────────────────────
+        // Edit these three arrays to update your schedule.
+        //
+        // Weekly recurring classes.
+        // Day numbers: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+        const weeklyClasses = [
+          { day: 3, time: '12:00 – 12:45 pm' }, // Wednesday
+          { day: 5, time: '12:00 – 12:45 pm' }, // Friday
+          { day: 6, time: '9:30 – 10:30 am' },  // Saturday
+        ];
+
+        // Dates when a recurring class is canceled.
+        // Format: 'YYYY-MM-DD'. Add a reason if you want it shown.
+        // Example: { date: '2026-11-26', reason: 'Thanksgiving' }
+        const closures = [
+          // { date: '2026-11-26', reason: 'Thanksgiving' },
+          // { date: '2026-12-25', reason: 'Christmas' },
+        ];
+
+        // One-off additions like workshops or special events.
+        // Format: date, time, name.
+        // Example: { date: '2026-11-15', time: '10:00 am – 12:00 pm', name: 'The Back — a somatic workshop' }
+        const additions = [
+          // { date: '2026-11-15', time: '10:00 am – 12:00 pm', name: 'The Back — a somatic workshop' },
+        ];
+        //
+        // ─── END CONFIG ──────────────────────────────────────────────
+        //
+
+        let weekOffset = 0;
+
+        function pad(n) { return n < 10 ? '0' + n : '' + n; }
+        function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+
+        function getWeekStart(offset) {
+          const now = new Date();
+          const day = now.getDay();
+          const start = new Date(now);
+          start.setDate(now.getDate() - day + offset * 7);
+          start.setHours(0, 0, 0, 0);
+          return start;
+        }
+
+        function isWeekAllowed(weekStart) {
+          // A week is "allowed" if any of its days fall in the current calendar month.
+          const now = new Date();
+          const currentMonth = now.getMonth();
+          const currentYear = now.getFullYear();
+          for (let d = 0; d < 7; d++) {
+            const day = new Date(weekStart);
+            day.setDate(day.getDate() + d);
+            if (day.getMonth() === currentMonth && day.getFullYear() === currentYear) {
+              return true;
+            }
+          }
+          return false;
+        }
+
+        function formatWeekLabel(start) {
+          const end = new Date(start);
+          end.setDate(end.getDate() + 6);
+          const startMonth = start.toLocaleDateString('en-US', { month: 'long' });
+          const endMonth = end.toLocaleDateString('en-US', { month: 'long' });
+          if (startMonth === endMonth) {
+            return startMonth + ' ' + start.getDate() + ' – ' + end.getDate();
+          }
+          return startMonth + ' ' + start.getDate() + ' – ' + endMonth + ' ' + end.getDate();
+        }
+
+        function getWeekItems(weekStart) {
+          const items = [];
+          const weekEnd = new Date(weekStart);
+          weekEnd.setDate(weekEnd.getDate() + 6);
+          weekEnd.setHours(23, 59, 59, 999);
+
+          for (let d = 0; d < 7; d++) {
+            const date = new Date(weekStart);
+            date.setDate(date.getDate() + d);
+            const dayOfWeek = date.getDay();
+            const dateStr = ymd(date);
+
+            const dayClasses = weeklyClasses.filter(function (c) { return c.day === dayOfWeek; });
+            if (dayClasses.length === 0) continue;
+
+            const closure = closures.find(function (c) { return c.date === dateStr; });
+            if (closure) {
+              items.push({ date: new Date(date), type: 'closure', reason: closure.reason });
+              continue;
+            }
+
+            dayClasses.forEach(function (cls) {
+              items.push({ date: new Date(date), type: 'class', time: cls.time });
+            });
+          }
+
+          additions.forEach(function (add) {
+            const parts = add.date.split('-');
+            const addDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+            if (addDate >= weekStart && addDate <= weekEnd) {
+              items.push({ date: addDate, type: 'addition', time: add.time, name: add.name });
+            }
+          });
+
+          items.sort(function (a, b) { return a.date - b.date; });
+          return items;
+        }
+
+        function render() {
+          const weekStart = getWeekStart(weekOffset);
+          document.getElementById('week-label').textContent = formatWeekLabel(weekStart);
+
+          const items = getWeekItems(weekStart);
+          const list = document.getElementById('class-list');
+          list.innerHTML = '';
+
+          if (items.length === 0) {
+            list.innerHTML = '<div class="no-classes">No classes this week.</div>';
+          } else {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            items.forEach(function (item) {
+              const isPast = item.date < today;
+              const dayName = item.date.toLocaleDateString('en-US', { weekday: 'long' });
+              const dateStr = item.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+              const row = document.createElement('div');
+              row.className = 'class-row' + (isPast ? ' class-past' : '');
+              let rightSide = '';
+              if (item.type === 'closure') {
+                rightSide = '<div class="class-closure">Closed' + (item.reason ? ' &mdash; ' + item.reason : '') + '</div>';
+              } else if (item.type === 'addition') {
+                rightSide = '<div><div class="class-detail">' + item.name + '</div><div class="class-time">' + item.time + '</div></div>';
+              } else {
+                rightSide = '<div class="class-time">' + item.time + '</div>';
+              }
+              row.innerHTML = '<div class="class-day">' + dayName + ', ' + dateStr + '</div>' + rightSide;
+              list.appendChild(row);
+            });
+          }
+
+          // Enable/disable nav buttons based on month boundary
+          document.querySelector('.week-next').disabled = !isWeekAllowed(getWeekStart(weekOffset + 1));
+          document.querySelector('.week-prev').disabled = !isWeekAllowed(getWeekStart(weekOffset - 1));
+        }
+
+        document.querySelector('.week-prev').addEventListener('click', function () {
+          if (!isWeekAllowed(getWeekStart(weekOffset - 1))) return;
+          weekOffset--;
+          render();
+        });
+        document.querySelector('.week-next').addEventListener('click', function () {
+          if (!isWeekAllowed(getWeekStart(weekOffset + 1))) return;
+          weekOffset++;
+          render();
+        });
+
+        render();
+      })();
+    </script>
   </div>
 </section>
 
 <section id="contact" class="contact">
   <div class="container-narrow">
-    <h2>To inquire, <em>send a note.</em></h2>
-    <p>Tell me a little about where you are and what you&rsquo;re looking for.</p>
-    <a href="mailto:cooley.katherine@gmail.com" class="button">cooley.katherine@gmail.com</a>
+    <h2>To inquire, send a note.</h2>
+    <p>I respond to every email personally. Tell me a little about where you are and what you&rsquo;re looking for.</p>
+    <a href="mailto:cooley.katherine@gmail.com" class="button">Send a note</a>
   </div>
 </section>
 
@@ -364,7 +628,7 @@
       <div style="margin-top: 0.4rem;">214 E 13th Ave, Spokane, WA 99202</div>
     </div>
     <div style="text-align: right;">
-      <div><a href="https://www.instagram.com/joy.yoga.project">Instagram</a> &nbsp;&middot;&nbsp; With <a href="https://scanloncooley.com">Katie Cooley</a></div>
+      <div><a href="https://www.instagram.com/joy.yoga.project">Instagram</a> &nbsp;&middot;&nbsp; With <a href="https://scanloncooley.com">Dr. Katherine Scanlon Cooley</a></div>
       <div style="margin-top: 0.4rem; opacity: 0.6;">&copy; 2026</div>
     </div>
   </div>
