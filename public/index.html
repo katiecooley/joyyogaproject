@@ -6,13 +6,13 @@
 <title>Joy Yoga Project &middot; Somatic yoga in Spokane</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1a1a1a;
     --ink-soft: #555555;
     --paper: #ffffff;
-    --paper-alt: #f3f3f2;
+    --paper-alt: #ebe8e0;
     --accent: #8a3a2a;
     --accent-soft: #b85a3e;
     --line: #e5e5e3;
@@ -66,34 +66,71 @@
   .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
   .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 2rem; }
 
-  /* Hero */
+  /* Hero — 3x3 magic square with text-in-cells */
   .hero {
-    padding: 7rem 2rem 5rem;
+    padding: 3rem 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  .hero .inner { max-width: 680px; margin: 0 auto; padding: 0 2rem; }
-  .hero .eyebrow {
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .hero-grid > * {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+  }
+  .hero-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-cell-text {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 1.25rem;
+    text-align: left;
+    overflow: hidden;
+  }
+  .hero-cell-text .bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero-cell-text::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+  }
+  .hero-cell-text h1,
+  .hero-cell-text .cell-label {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
     text-transform: uppercase;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    margin-bottom: 1.75rem;
-    font-weight: 500;
+    font-size: clamp(0.95rem, 1.8vw, 1.35rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0;
+    max-width: 100%;
   }
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.75rem, 3.5vw, 2.8rem);
-    font-weight: 300;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-    margin-bottom: 1.5rem;
-    max-width: 22ch;
-  }
-  .hero h1 em { font-style: italic; font-weight: 400; }
-  .hero .lead {
-    font-size: 1rem;
-    color: var(--ink-soft);
-    max-width: 56ch;
-    line-height: 1.7;
+  @media (max-width: 640px) {
+    .hero { padding: 2rem 1rem 3rem; }
+    .hero-grid { gap: 6px; }
+    .hero-cell-text { padding: 0.6rem; }
+    .hero-cell-text h1,
+    .hero-cell-text .cell-label { font-size: 0.68rem; letter-spacing: 0; }
   }
 
   /* Section base */
@@ -119,17 +156,24 @@
   /* About */
   .about { background: var(--paper-alt); }
   .about p {
-    font-size: 0.96rem;
-    color: var(--ink-soft);
-    margin-bottom: 1.3rem;
-    max-width: 62ch;
-    line-height: 1.75;
-  }
-  .about p:first-of-type {
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--ink);
-    font-weight: 400;
-    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 62ch;
+    line-height: 1.7;
+  }
+  .about .katonah {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.92em;
+    color: var(--ink);
+  }
+  .about .pull {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--ink);
   }
   .about .sig {
     margin-top: 2rem;
@@ -182,6 +226,65 @@
     font-style: italic;
   }
 
+  /* Book */
+  .book { background: var(--paper); }
+  .book .inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .book-cover {
+    width: 200px;
+    height: auto;
+    display: block;
+    box-shadow: 0 18px 40px rgba(26, 26, 26, 0.15);
+  }
+  .book-content h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .book-content h3 em { font-style: normal; }
+  .book-content .subtitle {
+    font-family: 'Fraunces', serif;
+    font-style: normal;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+  .book-content p {
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .book-links a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+    padding-bottom: 1px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    margin-right: 1.5rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+  .book-links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  @media (max-width: 640px) {
+    .book .inner { grid-template-columns: 1fr; gap: 2rem; text-align: left; }
+    .book-cover { width: 160px; }
+  }
+
   /* Who */
   .who { background: var(--paper-alt); }
   .who p {
@@ -223,6 +326,27 @@
     font-weight: 400;
     color: var(--ink);
     margin-bottom: 1.25rem;
+  }
+
+  /* Gallery — magic square 3x3 */
+  .gallery { background: var(--paper); padding: 5rem 2rem; }
+  .gallery .grid-9 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 1.5rem;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .gallery .grid-9 img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 640px) {
+    .gallery .grid-9 { gap: 6px; }
   }
   .week-nav {
     display: flex;
@@ -371,7 +495,6 @@
   <div class="container">
     <div class="logo">Joy Yoga Project</div>
     <ul>
-      <li><a href="#offerings">Offerings</a></li>
       <li><a href="#schedule">Schedule</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -379,51 +502,54 @@
 </nav>
 
 <header class="hero">
-  <div class="inner">
-    <div class="eyebrow">Spokane, WA</div>
-    <h1>Yoga, taught as a practice of <em>somatic resourcing</em>.</h1>
-    <p class="lead">Limited monthly offerings with Dr. Katherine Scanlon Cooley, rooted in Katonah Yoga&reg; methodology and informed by research in integrative health science.</p>
+  <div class="hero-grid">
+    <div class="hero-cell-text">
+      <img class="bg" src="img/plum-hub.jpg" alt="">
+      <h1>Katonah Yoga&reg;</h1>
+    </div>
+    <img src="img/w1d1.png" alt="">
+    <img src="img/w2d7.png" alt="">
+
+    <img src="img/geometry.png" alt="">
+    <div class="hero-cell-text">
+      <img class="bg" src="img/entry-water.jpg" alt="">
+      <p class="cell-label">A somatic resourcing practice</p>
+    </div>
+    <img src="img/w5d2.png" alt="">
+
+    <img src="img/w3d1.png" alt="">
+    <img src="img/w6d5.png" alt="">
+    <div class="hero-cell-text">
+      <img class="bg" src="img/threshold.png" alt="">
+      <p class="cell-label">Weekly offerings</p>
+    </div>
   </div>
 </header>
 
 <section class="about">
   <div class="container-narrow">
     <div class="section-label">About the practice</div>
-    <p>I teach yoga as a somatic resourcing practice. Sessions develop our capacity &mdash; through movement, breath, attention, visualization, therapeutic metaphor, archetype, and sacred geometry &mdash; to build the interior capacities that health depends on: interoception, proprioception, structural integrity, and nervous system regulation.</p>
-    <p>Classes are small and interactive. The approach is precise and accessible. It is not about what only some bodies can do, but about how bodies are designed to function.</p>
-    <p>People typically come to me from backgrounds of chronic pain or long histories with yoga that have left them feeling like a tourist in their own body, or from athletic backgrounds where they have spent years training the body without ever fully inhabiting it.</p>
-    <p>This isn&rsquo;t yoga as fitness, although it will build breath capacity, strength, and mobility. And it isn&rsquo;t yoga as stress relief, although you will be able to hold more complexity and paradox. Instead, it is a practice of learning to fit yourself so you can live and move in the ways you want.</p>
-    <p style="margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--line); font-size: 0.92rem; font-style: italic;">On the name. Nevine Michaan, who developed <a href="https://www.katonahyoga.com" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">Katonah Yoga&reg;</a>, teaches that when we face the direction of joy, the rearview mirror reveals everything that brought us here. The practice is in that spirit &mdash; oriented forward, with what came before integrated and visible behind.</p>
+    <p><span class="katonah">Katonah Yoga&reg;</span> is a canon of techniques that reliably create the conditions for loading patterns that you may not normally inhabit. This gives one&rsquo;s mind and body a great deal of new sensory information. Muscle, bone, and tissue that usually stabilize through habitual strategy may momentarily decrease control, allowing other tissue to contribute differently. Mentalization, through imagery, narrative, therapeutic metaphor, archetype, and sacred geometry, creates a context that can take one out of the efforts of their personal embodiment and lead to greater integration of mind and body.</p>
+    <p>People often come to this practice looking for a way to be in their bodies in a way that is more aligned with who they are on the inside. In that way, it is <span class="pull">a kind of bringing forth of the implicit</span>.</p>
+    <p>This isn&rsquo;t yoga as fitness, although it will build breath capacity, strength, and mobility. And it isn&rsquo;t yoga as stress relief, although you will be able to hold more complexity and paradox. Instead, it is a practice of learning to fit yourself so you can live and move in the ways <span class="pull">germane to who you are and who you are becoming</span>.</p>
+    <p style="margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--line); font-size: 0.92rem; font-family: 'Fraunces', serif; font-weight: 600;">On the name. Nevine Michaan, who developed <a href="https://www.katonahyoga.com" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">Katonah Yoga&reg;</a>, teaches that when we face the direction of joy, the rearview mirror reveals everything that brought us here. The practice is in that spirit &mdash; oriented forward, with what came before integrated and visible behind.</p>
     <div class="sig">
-      Dr. Katherine Scanlon Cooley &mdash; <a href="https://scanloncooley.com">scanloncooley.com</a>
+      Dr. Katie Cooley &mdash; <a href="https://scanloncooley.com">scanloncooley.com</a>
     </div>
   </div>
 </section>
 
-<section id="offerings" class="offerings">
-  <div class="container-narrow">
-    <div class="section-label">How to work with me</div>
-    <h2 class="section-title">Practice with me.</h2>
-    <div class="items">
-
-      <div class="offering">
-        <div class="label">01 &mdash; In Spokane</div>
-        <div>
-          <h3>Weekly in-person classes</h3>
-          <p>An ongoing class for people who want to come into the practice regularly. Each session builds on the last, and you can join at any point.</p>
-          <div class="detail"><a href="#schedule" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">See the current schedule &darr;</a></div>
-        </div>
+<section class="book">
+  <div class="inner">
+    <img class="book-cover" src="img/song-in-our-bones-cover.jpg" alt="The Song in Our Bones — book cover">
+    <div class="book-content">
+      <div class="section-label">Book</div>
+      <h3><em>The Song in Our Bones</em></h3>
+      <div class="subtitle">Embodiment and the mind&ndash;body practices of Katonah Yoga&reg;</div>
+      <p>The deeper reading of the practice &mdash; an exploration of how the body's geometry, structure, and rhythms teach us to inhabit ourselves. Written across years of practice and doctoral research on embodiment.</p>
+      <div class="book-links">
+        <a href="mailto:cooley.katherine@gmail.com?subject=The%20Song%20in%20Our%20Bones%20%E2%80%94%20order">Order a copy &rarr;</a>
       </div>
-
-      <div class="offering">
-        <div class="label">02 &mdash; Anywhere</div>
-        <div>
-          <h3>Plumb Method</h3>
-          <p>An app I built to extend this practice beyond the studio &mdash; for people who want to get back into their bodies and move better. On-demand sessions and a weekly livestream class.</p>
-          <div class="detail">Pilot now recruiting &middot; <a href="https://plumbmethod.com" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); padding-bottom: 1px;">plumbmethod.com &rarr;</a></div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -628,7 +754,7 @@
       <div style="margin-top: 0.4rem;">214 E 13th Ave, Spokane, WA 99202</div>
     </div>
     <div style="text-align: right;">
-      <div><a href="https://www.instagram.com/joy.yoga.project">Instagram</a> &nbsp;&middot;&nbsp; With <a href="https://scanloncooley.com">Dr. Katherine Scanlon Cooley</a></div>
+      <div><a href="https://www.instagram.com/joy.yoga.project">Instagram</a> &nbsp;&middot;&nbsp; With <a href="https://scanloncooley.com">Dr. Katie Cooley</a></div>
       <div style="margin-top: 0.4rem; opacity: 0.6;">&copy; 2026</div>
     </div>
   </div>
