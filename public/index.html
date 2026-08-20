@@ -296,36 +296,187 @@
   }
 
   /* Schedule */
-  .schedule { background: var(--paper-alt); }
-  .schedule p.lead-line {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    margin-bottom: 2rem;
-    max-width: 58ch;
-    line-height: 1.7;
+  .schedule { background: var(--paper-alt); padding: 5rem 2rem; }
+  .schedule-wide {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
-  .schedule-block {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
+  .schedule .month-section + .month-section {
+    margin-top: 5rem;
+    padding-top: 5rem;
     border-top: 1px solid var(--line);
   }
-  .schedule-block:first-of-type {
-    margin-top: 1rem;
+  .schedule-lead {
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+    margin-bottom: 2.5rem;
+    max-width: 55ch;
+    line-height: 1.7;
   }
-  .schedule-group-label {
-    font-family: 'Fraunces', serif;
-    font-size: 0.85rem;
-    color: var(--accent);
-    font-style: italic;
-    font-weight: 400;
+  .month-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
     margin-bottom: 1.5rem;
   }
-  .schedule-heading {
+  .month-label {
     font-family: 'Fraunces', serif;
     font-size: 1.35rem;
-    font-weight: 400;
     color: var(--ink);
-    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .month-nav .arrow {
+    background: none;
+    border: none;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.5rem;
+  }
+  /* Calendar grid */
+  .cal {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  .cal-day-name {
+    padding: 0.6rem 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+  }
+  .cal-cell {
+    min-height: 96px;
+    padding: 0.55rem 0.65rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: var(--paper);
+  }
+  .cal-cell.empty { background: transparent; }
+  .cal-num {
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.3rem;
+    font-weight: 400;
+  }
+  .cal-cell.has-class .cal-num { color: var(--ink); font-weight: 500; }
+  .cal-class {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    color: var(--ink);
+    line-height: 1.35;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+  }
+  .cal-class .time {
+    display: block;
+    font-weight: 400;
+    color: var(--ink-soft);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 0.15rem;
+    font-size: 0.7rem;
+  }
+  .cal-cell.workshop { background: var(--accent); }
+  .cal-cell.workshop .cal-num,
+  .cal-cell.workshop .cal-class { color: #fff; }
+  .cal-cell.workshop .cal-class .time { color: rgba(255,255,255,0.75); }
+  .cal-marker {
+    margin-top: auto;
+    padding-top: 0.4rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.68rem;
+    color: var(--accent);
+    line-height: 1.25;
+  }
+  /* Month themes */
+  .themes {
+    margin-top: -0.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .themes-label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .themes-list {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .themes-list .dot {
+    color: var(--accent);
+    padding: 0 0.35rem;
+    font-weight: 400;
+  }
+  /* Pricing */
+  .pricing {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .pricing-item { display: flex; flex-direction: column; }
+  .pricing-label {
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+  .pricing-value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .pricing-value .price { color: var(--accent); margin-right: 0.5rem; }
+  .signup {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    max-width: 55ch;
+    line-height: 1.7;
+  }
+  .signup a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+    padding-bottom: 1px;
+  }
+  @media (max-width: 720px) {
+    .cal-cell { min-height: 70px; padding: 0.4rem; }
+    .cal-day-name { padding: 0.4rem; font-size: 0.6rem; }
+    .cal-num { font-size: 0.8rem; }
+    .cal-class { font-size: 0.55rem; }
+    .cal-class .time { font-size: 0.58rem; }
   }
 
   /* Gallery — magic square 3x3 */
@@ -556,187 +707,156 @@
 </section>
 
 <section id="schedule" class="schedule">
-  <div class="container-narrow">
+  <div class="schedule-wide">
     <div class="section-label">Schedule</div>
-    <h2 class="section-title">Current classes.</h2>
+    <h2 class="section-title">Monthly classes.</h2>
+    <p class="schedule-lead">Schedules are set monthly and released on the 25th. Reserve your classes for the month by email and Venmo before your first class.</p>
 
-    <div class="schedule-block">
-      <h3 class="schedule-heading">Katonah Yoga&reg;</h3>
-
-      <div class="week-nav">
-        <button class="week-prev" aria-label="Previous week">&larr; Previous week</button>
-        <div class="week-label" id="week-label">&nbsp;</div>
-        <button class="week-next" aria-label="Next week">Next week &rarr;</button>
+    <!-- ── AUGUST 2026 ─────────────────────────── -->
+    <div class="month-section">
+      <div class="month-nav">
+        <div class="month-label">August 2026</div>
       </div>
+      <div class="cal">
+        <div class="cal-day-name">Sun</div>
+        <div class="cal-day-name">Mon</div>
+        <div class="cal-day-name">Tue</div>
+        <div class="cal-day-name">Wed</div>
+        <div class="cal-day-name">Thu</div>
+        <div class="cal-day-name">Fri</div>
+        <div class="cal-day-name">Sat</div>
 
-      <div id="class-list">
-        <!-- populated by JavaScript -->
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell has-class"><div class="cal-num">1</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
+
+        <div class="cal-cell"><div class="cal-num">2</div></div>
+        <div class="cal-cell"><div class="cal-num">3</div></div>
+        <div class="cal-cell"><div class="cal-num">4</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">5</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell"><div class="cal-num">6</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">7</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class"><div class="cal-num">8</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
+
+        <div class="cal-cell"><div class="cal-num">9</div></div>
+        <div class="cal-cell"><div class="cal-num">10</div></div>
+        <div class="cal-cell"><div class="cal-num">11</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">12</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell"><div class="cal-num">13</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">14</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class"><div class="cal-num">15</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
+
+        <div class="cal-cell"><div class="cal-num">16</div></div>
+        <div class="cal-cell"><div class="cal-num">17</div></div>
+        <div class="cal-cell"><div class="cal-num">18</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">19</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell"><div class="cal-num">20</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">21</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class"><div class="cal-num">22</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
+
+        <div class="cal-cell"><div class="cal-num">23</div></div>
+        <div class="cal-cell"><div class="cal-num">24</div></div>
+        <div class="cal-cell"><div class="cal-num">25</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">26</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell"><div class="cal-num">27</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">28</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class"><div class="cal-num">29</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
+
+        <div class="cal-cell"><div class="cal-num">30</div></div>
+        <div class="cal-cell"><div class="cal-num">31</div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
       </div>
     </div>
 
-    <p class="schedule-note">All classes at 214 E 13th Ave, Spokane. New to the practice, or want to reserve a spot &mdash; <a href="mailto:cooley.katherine@gmail.com">send a note</a>.</p>
+    <!-- ── SEPTEMBER 2026 ─────────────────────── -->
+    <div class="month-section">
+      <div class="month-nav">
+        <div class="month-label">September 2026</div>
+      </div>
+      <div class="themes">
+        <span class="themes-label">This month</span>
+        <div class="themes-list">
+          Room 9<span class="dot">&middot;</span>A Room With A View<span class="dot">&middot;</span>Harvest<span class="dot">&middot;</span>Metal<span class="dot">&middot;</span>Lungs
+        </div>
+      </div>
+      <p class="schedule-lead">Tuesdays at 8:00 am (new morning time), Fridays at noon, Saturdays at 9:30 am.</p>
 
-    <script>
-      (function () {
-        //
-        // ─── SCHEDULE CONFIG ─────────────────────────────────────────
-        // Edit these three arrays to update your schedule.
-        //
-        // Weekly recurring classes.
-        // Day numbers: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
-        const weeklyClasses = [
-          { day: 3, time: '12:00 – 12:45 pm' }, // Wednesday
-          { day: 5, time: '12:00 – 12:45 pm' }, // Friday
-          { day: 6, time: '9:30 – 10:30 am' },  // Saturday
-        ];
+      <div class="cal">
+        <div class="cal-day-name">Sun</div>
+        <div class="cal-day-name">Mon</div>
+        <div class="cal-day-name">Tue</div>
+        <div class="cal-day-name">Wed</div>
+        <div class="cal-day-name">Thu</div>
+        <div class="cal-day-name">Fri</div>
+        <div class="cal-day-name">Sat</div>
 
-        // Dates when a recurring class is canceled.
-        // Format: 'YYYY-MM-DD'. Add a reason if you want it shown.
-        // Example: { date: '2026-11-26', reason: 'Thanksgiving' }
-        const closures = [
-          // { date: '2026-11-26', reason: 'Thanksgiving' },
-          // { date: '2026-12-25', reason: 'Christmas' },
-        ];
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell has-class"><div class="cal-num">1</div><div class="cal-class">Class<span class="time">8:00 &ndash; 9:00 am</span></div></div>
+        <div class="cal-cell"><div class="cal-num">2</div></div>
+        <div class="cal-cell"><div class="cal-num">3</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">4</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class"><div class="cal-num">5</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
 
-        // One-off additions like workshops or special events.
-        // Format: date, time, name.
-        // Example: { date: '2026-11-15', time: '10:00 am – 12:00 pm', name: 'The Back — a somatic workshop' }
-        const additions = [
-          // { date: '2026-11-15', time: '10:00 am – 12:00 pm', name: 'The Back — a somatic workshop' },
-        ];
-        //
-        // ─── END CONFIG ──────────────────────────────────────────────
-        //
+        <div class="cal-cell"><div class="cal-num">6</div></div>
+        <div class="cal-cell"><div class="cal-num">7</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">8</div><div class="cal-class">Class<span class="time">8:00 &ndash; 9:00 am</span></div></div>
+        <div class="cal-cell"><div class="cal-num">9</div></div>
+        <div class="cal-cell"><div class="cal-num">10</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">11</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class"><div class="cal-num">12</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
 
-        let weekOffset = 0;
+        <div class="cal-cell"><div class="cal-num">13</div></div>
+        <div class="cal-cell"><div class="cal-num">14</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">15</div><div class="cal-class">Class<span class="time">8:00 &ndash; 9:00 am</span></div></div>
+        <div class="cal-cell"><div class="cal-num">16</div></div>
+        <div class="cal-cell"><div class="cal-num">17</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">18</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class"><div class="cal-num">19</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
 
-        function pad(n) { return n < 10 ? '0' + n : '' + n; }
-        function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+        <div class="cal-cell"><div class="cal-num">20</div></div>
+        <div class="cal-cell"><div class="cal-num">21</div></div>
+        <div class="cal-cell has-class">
+          <div class="cal-num">22</div>
+          <div class="cal-class">Class<span class="time">8:00 &ndash; 9:00 am</span></div>
+          <div class="cal-marker">Autumnal equinox</div>
+        </div>
+        <div class="cal-cell"><div class="cal-num">23</div></div>
+        <div class="cal-cell"><div class="cal-num">24</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">25</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class"><div class="cal-num">26</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
 
-        function getWeekStart(offset) {
-          const now = new Date();
-          const day = now.getDay();
-          const start = new Date(now);
-          start.setDate(now.getDate() - day + offset * 7);
-          start.setHours(0, 0, 0, 0);
-          return start;
-        }
+        <div class="cal-cell"><div class="cal-num">27</div></div>
+        <div class="cal-cell"><div class="cal-num">28</div></div>
+        <div class="cal-cell has-class"><div class="cal-num">29</div><div class="cal-class">Class<span class="time">8:00 &ndash; 9:00 am</span></div></div>
+        <div class="cal-cell"><div class="cal-num">30</div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
 
-        function isWeekAllowed(weekStart) {
-          // A week is "allowed" if any of its days fall in the current calendar month.
-          const now = new Date();
-          const currentMonth = now.getMonth();
-          const currentYear = now.getFullYear();
-          for (let d = 0; d < 7; d++) {
-            const day = new Date(weekStart);
-            day.setDate(day.getDate() + d);
-            if (day.getMonth() === currentMonth && day.getFullYear() === currentYear) {
-              return true;
-            }
-          }
-          return false;
-        }
+      <div class="pricing">
+        <div class="pricing-item">
+          <span class="pricing-label">Monthly pass</span>
+          <span class="pricing-value"><span class="price">$125</span>any or all classes this month</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-label">Drop-in</span>
+          <span class="pricing-value"><span class="price">$25</span>per class</span>
+        </div>
+      </div>
 
-        function formatWeekLabel(start) {
-          const end = new Date(start);
-          end.setDate(end.getDate() + 6);
-          const startMonth = start.toLocaleDateString('en-US', { month: 'long' });
-          const endMonth = end.toLocaleDateString('en-US', { month: 'long' });
-          if (startMonth === endMonth) {
-            return startMonth + ' ' + start.getDate() + ' – ' + end.getDate();
-          }
-          return startMonth + ' ' + start.getDate() + ' – ' + endMonth + ' ' + end.getDate();
-        }
+      <p class="signup">All classes at 214 E 13th Ave, Spokane. Reply to reserve at <a href="mailto:cooley.katherine@gmail.com">cooley.katherine@gmail.com</a>, and Venmo before your first class. New to the practice? Just say so and I&rsquo;ll meet you before class.</p>
+    </div>
 
-        function getWeekItems(weekStart) {
-          const items = [];
-          const weekEnd = new Date(weekStart);
-          weekEnd.setDate(weekEnd.getDate() + 6);
-          weekEnd.setHours(23, 59, 59, 999);
-
-          for (let d = 0; d < 7; d++) {
-            const date = new Date(weekStart);
-            date.setDate(date.getDate() + d);
-            const dayOfWeek = date.getDay();
-            const dateStr = ymd(date);
-
-            const dayClasses = weeklyClasses.filter(function (c) { return c.day === dayOfWeek; });
-            if (dayClasses.length === 0) continue;
-
-            const closure = closures.find(function (c) { return c.date === dateStr; });
-            if (closure) {
-              items.push({ date: new Date(date), type: 'closure', reason: closure.reason });
-              continue;
-            }
-
-            dayClasses.forEach(function (cls) {
-              items.push({ date: new Date(date), type: 'class', time: cls.time });
-            });
-          }
-
-          additions.forEach(function (add) {
-            const parts = add.date.split('-');
-            const addDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
-            if (addDate >= weekStart && addDate <= weekEnd) {
-              items.push({ date: addDate, type: 'addition', time: add.time, name: add.name });
-            }
-          });
-
-          items.sort(function (a, b) { return a.date - b.date; });
-          return items;
-        }
-
-        function render() {
-          const weekStart = getWeekStart(weekOffset);
-          document.getElementById('week-label').textContent = formatWeekLabel(weekStart);
-
-          const items = getWeekItems(weekStart);
-          const list = document.getElementById('class-list');
-          list.innerHTML = '';
-
-          if (items.length === 0) {
-            list.innerHTML = '<div class="no-classes">No classes this week.</div>';
-          } else {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            items.forEach(function (item) {
-              const isPast = item.date < today;
-              const dayName = item.date.toLocaleDateString('en-US', { weekday: 'long' });
-              const dateStr = item.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-              const row = document.createElement('div');
-              row.className = 'class-row' + (isPast ? ' class-past' : '');
-              let rightSide = '';
-              if (item.type === 'closure') {
-                rightSide = '<div class="class-closure">Closed' + (item.reason ? ' &mdash; ' + item.reason : '') + '</div>';
-              } else if (item.type === 'addition') {
-                rightSide = '<div><div class="class-detail">' + item.name + '</div><div class="class-time">' + item.time + '</div></div>';
-              } else {
-                rightSide = '<div class="class-time">' + item.time + '</div>';
-              }
-              row.innerHTML = '<div class="class-day">' + dayName + ', ' + dateStr + '</div>' + rightSide;
-              list.appendChild(row);
-            });
-          }
-
-          // Enable/disable nav buttons based on month boundary
-          document.querySelector('.week-next').disabled = !isWeekAllowed(getWeekStart(weekOffset + 1));
-          document.querySelector('.week-prev').disabled = !isWeekAllowed(getWeekStart(weekOffset - 1));
-        }
-
-        document.querySelector('.week-prev').addEventListener('click', function () {
-          if (!isWeekAllowed(getWeekStart(weekOffset - 1))) return;
-          weekOffset--;
-          render();
-        });
-        document.querySelector('.week-next').addEventListener('click', function () {
-          if (!isWeekAllowed(getWeekStart(weekOffset + 1))) return;
-          weekOffset++;
-          render();
-        });
-
-        render();
-      })();
-    </script>
   </div>
 </section>
 
