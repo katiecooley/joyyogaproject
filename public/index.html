@@ -302,11 +302,11 @@
     margin: 0 auto;
     padding: 0 2rem;
   }
-  .schedule .month-section + .month-section {
-    margin-top: 5rem;
-    padding-top: 5rem;
-    border-top: 1px solid var(--line);
-  }
+  .month-view { display: none; }
+  .month-view.active { display: block; }
+  .month-nav .arrow[disabled] { opacity: 0.25; cursor: not-allowed; }
+  .month-nav .arrow { cursor: pointer; }
+  .month-nav .arrow:hover:not([disabled]) { color: var(--accent); }
   .schedule-lead {
     font-size: 0.94rem;
     color: var(--ink-soft);
@@ -712,11 +712,14 @@
     <h2 class="section-title">Monthly classes.</h2>
     <p class="schedule-lead">Schedules are set monthly and released on the 25th. Reserve your classes for the month by email and Venmo before your first class.</p>
 
+    <div class="month-nav">
+      <button class="arrow" data-dir="-1" aria-label="Previous month">&larr; Previous</button>
+      <div class="month-label" id="month-label">August 2026</div>
+      <button class="arrow" data-dir="1" aria-label="Next month">Next &rarr;</button>
+    </div>
+
     <!-- ── AUGUST 2026 ─────────────────────────── -->
-    <div class="month-section">
-      <div class="month-nav">
-        <div class="month-label">August 2026</div>
-      </div>
+    <div class="month-view active" data-label="August 2026">
       <div class="cal">
         <div class="cal-day-name">Sun</div>
         <div class="cal-day-name">Mon</div>
@@ -777,10 +780,7 @@
     </div>
 
     <!-- ── SEPTEMBER 2026 ─────────────────────── -->
-    <div class="month-section">
-      <div class="month-nav">
-        <div class="month-label">September 2026</div>
-      </div>
+    <div class="month-view" data-label="September 2026">
       <div class="themes">
         <span class="themes-label">This month</span>
         <div class="themes-list">
@@ -856,6 +856,33 @@
 
       <p class="signup">All classes at 214 E 13th Ave, Spokane. Reply to reserve at <a href="mailto:cooley.katherine@gmail.com">cooley.katherine@gmail.com</a>, and Venmo before your first class. New to the practice? Just say so and I&rsquo;ll meet you before class.</p>
     </div>
+
+    <script>
+      (function () {
+        var views = Array.prototype.slice.call(document.querySelectorAll('.month-view'));
+        var label = document.getElementById('month-label');
+        var arrows = document.querySelectorAll('.month-nav .arrow');
+        var idx = 0;
+        function render() {
+          views.forEach(function (v, i) {
+            if (i === idx) { v.classList.add('active'); } else { v.classList.remove('active'); }
+          });
+          label.textContent = views[idx].getAttribute('data-label');
+          arrows[0].disabled = (idx === 0);
+          arrows[1].disabled = (idx === views.length - 1);
+        }
+        arrows.forEach(function (a) {
+          a.addEventListener('click', function () {
+            var dir = parseInt(a.getAttribute('data-dir'), 10);
+            var next = idx + dir;
+            if (next < 0 || next >= views.length) return;
+            idx = next;
+            render();
+          });
+        });
+        render();
+      })();
+    </script>
 
   </div>
 </section>
