@@ -718,12 +718,12 @@
 
     <div class="month-nav">
       <button class="arrow" data-dir="-1" aria-label="Previous month">&larr; Previous</button>
-      <div class="month-label" id="month-label">August 2026</div>
+      <div class="month-label" id="month-label">September 2026</div>
       <button class="arrow" data-dir="1" aria-label="Next month">Next &rarr;</button>
     </div>
 
     <!-- ── AUGUST 2026 ─────────────────────────── -->
-    <div class="month-view active" data-label="August 2026">
+    <div class="month-view" data-label="August 2026">
       <div class="cal">
         <div class="cal-day-name">Sun</div>
         <div class="cal-day-name">Mon</div>
@@ -784,7 +784,7 @@
     </div>
 
     <!-- ── SEPTEMBER 2026 ─────────────────────── -->
-    <div class="month-view" data-label="September 2026">
+    <div class="month-view active" data-label="September 2026">
       <div class="themes">
         <span class="themes-label">This month</span>
         <div class="themes-list">
@@ -864,7 +864,8 @@
         var views = Array.prototype.slice.call(document.querySelectorAll('.month-view'));
         var label = document.getElementById('month-label');
         var arrows = document.querySelectorAll('.month-nav .arrow');
-        var idx = 0;
+        var idx = views.findIndex(function (v) { return v.classList.contains('active'); });
+        if (idx < 0) idx = 0;
         function render() {
           views.forEach(function (v, i) {
             if (i === idx) { v.classList.add('active'); } else { v.classList.remove('active'); }
