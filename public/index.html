@@ -400,6 +400,8 @@
   .cal-cell.workshop .cal-num,
   .cal-cell.workshop .cal-class { color: #fff; }
   .cal-cell.workshop .cal-class .time { color: rgba(255,255,255,0.75); }
+  .cal-cell.canceled .cal-class,
+  .cal-cell.canceled .cal-class .time { text-decoration: line-through; color: var(--ink-soft); }
   .cal-marker {
     margin-top: auto;
     padding-top: 0.4rem;
@@ -886,7 +888,7 @@
         <div class="cal-cell has-class"><div class="cal-num">20</div><div class="cal-class">Class<span class="time">8:00 &ndash; 9:00 am</span></div></div>
         <div class="cal-cell"><div class="cal-num">21</div></div>
         <div class="cal-cell"><div class="cal-num">22</div></div>
-        <div class="cal-cell has-class"><div class="cal-num">23</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div></div>
+        <div class="cal-cell has-class canceled"><div class="cal-num">23</div><div class="cal-class">Class<span class="time">12:00 &ndash; 12:45 pm</span></div><div class="cal-marker">Canceled</div></div>
         <div class="cal-cell has-class"><div class="cal-num">24</div><div class="cal-class">Class<span class="time">9:30 &ndash; 10:30 am</span></div></div>
 
         <div class="cal-cell"><div class="cal-num">25</div></div>
